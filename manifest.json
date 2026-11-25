@@ -1,0 +1,13 @@
+{
+ "name": "Apartamentos Las Riberas",
+ "short_name": "Las Riberas",
+ "lang": "es",
+ "start_url": "./",
+ "display": "browser",
+ "background_color": "#EEF3F6",
+ "theme_color": "#0E1C2A",
+ "icons": [
+  { "src": "marca/icono-512.png", "sizes": "512x512", "type": "image/png" },
+  { "src": "marca/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+ ]
+}

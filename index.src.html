@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apartamentos Las Riberas · Apartamentos rurales junto al faro de Cabo Vidio, Cudillero</title>
+<meta name="description" content="Tres apartamentos rurales (Mirador, Familiar y Deluxe con jacuzzi) y una piscina climatizada en Vivigo, Oviñana (Cudillero, Asturias), junto a los acantilados de Cabo Vidio.">
+<meta property="og:title" content="Apartamentos Las Riberas · Junto al faro de Cabo Vidio">
+<meta property="og:description" content="Apartamentos rurales con piscina climatizada en Oviñana, Cudillero (Asturias).">
+<!--precarga-portada-->
+<!--jsonld-->
+<!--parte:partes/cabeza.html-->
+</head>
+<body>
+<!--parte:partes/cabecera.html-->
+<!--parte:partes/iconos.html-->
+
+<main id="principal">
+
+<!-- ============ 1. PORTADA «La luz de Vidio» (js/portada.js, LasRiberas.portada). Capas, de atrás adelante: el cielo
+     (de día o de noche con la hora real de Cudillero), el titular, el faro del logo redibujado, la fachada SIN su cielo
+     y el haz. Al girar, el haz enciende el titular y la fachada por donde pasa (dos copias recortadas por la cuña del
+     haz: máscara, no un foco encima). El HTML de [data-modulo="portada"] es el respaldo (sin JS, con movimiento
+     reducido y en la versión sobria): la misma escena con el haz quieto. La fachada es el LCP (se precarga). ============ -->
+<section id="portada" class="portada" aria-labelledby="t-portada">
+  <div class="portada__escena" data-modulo="portada">
+    <div class="portada__cielo" aria-hidden="true"></div>
+    <div class="portada__texto">
+      <h1 id="t-portada" class="portada__tit"><span class="portada__pre">Apartamentos rurales</span> <span class="portada__l">Junto al faro</span> <span class="portada__l">de Cabo Vidio</span></h1>
+      <p class="portada__sub">Apartamentos para dos, cuatro o seis y una piscina climatizada en Oviñana (Cudillero), a pocos pasos de los acantilados.</p>
+      <p class="portada__acc"><a class="btn btn--luz" href="#reservar">Ver fechas</a><a class="btn btn--linea-clara" href="#apartamentos">Los apartamentos</a></p>
+    </div>
+<!--faro-portada-->
+    <div class="portada__haz" aria-hidden="true"><span class="portada__cono"></span></div>
+    <div class="portada__foto"><img data-foto="fachada-recorte" alt="La casa de Las Riberas: una planta con porche de madera y tejado de teja, y el pabellón de cristal de la piscina, con el prado delante" sizes="(max-width: 699px) 260vw, (max-width: 1179px) 1180px, 100vw" fetchpriority="high" loading="eager"></div>
+    <span class="portada__destello" aria-hidden="true"></span>
+  </div>
+</section>
+
+<!-- ============ 2. Tres apartamentos: un selector (el elegido lo marca un haz corto) y la ficha con cifras grandes, lo
+     propio de cada uno con icono propio y «Ver fechas de este». Debajo, lo que tienen los tres, una sola vez. Sin JS (y
+     en la sobria) se ven las tres fichas seguidas. Datos: data/riberas.json → construir.mjs ============ -->
+<section id="apartamentos" class="sec apartamentos" aria-labelledby="t-apartamentos">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-apartamentos" class="sec-tit" data-aparece>Tres tipos de apartamento</h2>
+      <p class="sec-txt">Para dos, para cuatro o para seis. Los tres con cocina, suelo radiante y la piscina climatizada a unos pasos.</p>
+    </header>
+<!--apartamentos-->
+<!--vistazo-->
+<!--comunes-->
+  </div>
+</section>
+
+<!-- ============ 3. La piscina climatizada: fotos de 800 px a su tamaño (nunca más anchas) y el texto ============ -->
+<section id="piscina" class="sec piscina" aria-labelledby="t-piscina">
+  <div class="env">
+<!--piscina-->
+  </div>
+</section>
+
+<!-- ============ 4. Por dentro, por estancias: índice fijo que marca la estancia que se ve (con un haz corto), fotos sin
+     marco con las alturas igualadas por fila y el visor que abre por NOMBRE de archivo (checklist 11) ============ -->
+<section id="estancias" class="sec estancias-sec" aria-labelledby="t-estancias">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-estancias" class="sec-tit" data-aparece>Por dentro</h2>
+      <p class="sec-txt">Estancia a estancia, de los tres apartamentos. Debajo de cada foto, de cuál es. Pulsa para verla grande.</p>
+    </header>
+<!--estancias-->
+  </div>
+</section>
+
+<!-- ============ 5. EL LUGAR EN 3D (módulo del agente Lugar 3D: js/lugar.js, css/lugar.css). #lugar es campo oscuro: las
+     variables de fondo y texto se redefinen dentro (css/estilos.css). El HTML de [data-modulo="lugar"] es el respaldo
+     que pone la Web: Cabo Vidio con su faro y un texto. main.js monta LasRiberas.lugar al acercarse (900 px). ============ -->
+<section id="lugar" class="sec lugar" aria-labelledby="t-lugar">
+  <div class="env lugar__cab">
+    <h2 id="t-lugar" class="sec-tit" data-aparece>Del faro a la casa</h2>
+    <p class="sec-txt">El faro de Cabo Vidio queda a {{VIDIO_RECTA}} en línea recta, al norte, sobre los acantilados. Entre el faro y la casa, la rasa costera: prados que acaban de golpe en el mar.</p>
+  </div>
+  <div data-modulo="lugar">
+    <figure class="lugar__respaldo">
+      <img data-foto="faro-vidio" alt="Cabo Vidio: el acantilado de roca en capas cae al mar con olas y rocas; arriba, en el borde, el edificio del faro" sizes="(max-width: 1279px) 100vw, 1240px">
+      <figcaption>Cabo Vidio, con el faro arriba, sobre el acantilado.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 6. Alrededor: distancias SOLO de OSRM (ref/raw/rutas.json → construir.mjs). Sin el fichero, sin cifras.
+     El dibujo coloca cada sitio por su longitud y latitud reales; al elegir uno, un haz corto sale de la casa hacia él. ============ -->
+<section id="alrededor" class="sec alrededor" aria-labelledby="t-alrededor">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-alrededor" class="sec-tit" data-aparece>Alrededor</h2>
+      <!--alrededor-txt-->
+    </header>
+<!--alrededor-->
+  </div>
+</section>
+
+<!--resenas-->
+
+<!-- ============ 8. Reservar: buscador propio (js/reserva.js) que abre su motor REAL (Redforts) en un iframe solo al
+     pedirlo, con las fechas por URL (?arrival=…&departure=…). Al lado, las condiciones del motor ============ -->
+<section id="reservar" class="sec reservar" aria-labelledby="t-reservar">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-reservar" class="sec-tit" data-aparece>Ver fechas y reservar</h2>
+      <p class="sec-txt">Elige llegada y salida. Se abre su motor de reservas con esas fechas.</p>
+    </header>
+<!--parte:partes/reserva.html-->
+  </div>
+</section>
+
+<!-- ============ 9. Contacto y mapa (Google Maps sin clave, solo tras pulsar) ============ -->
+<section id="contacto" class="sec contacto" aria-labelledby="t-contacto">
+  <div class="env contacto__in">
+    <div class="contacto__txt">
+      <h2 id="t-contacto" class="sec-tit" data-aparece>Cómo llegar</h2>
+      <address class="contacto__dir">Vivigo s/n, Oviñana<br>Cudillero (Asturias)</address>
+      <ul class="contacto__lineas">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg><a class="cifra" href="tel:+34686498264">686 498 264</a> · <a class="cifra" href="tel:+34626467401">626 467 401</a></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg><a href="https://wa.me/34686498264" target="_blank" rel="noopener">WhatsApp, al 686 498 264<span class="vh"> (se abre en otra pestaña)</span></a></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-correo"/></svg><a href="mailto:info@apartamentoslasriberas.com">info@apartamentoslasriberas.com</a></li>
+      </ul>
+<!--llegar-->
+    </div>
+    <div class="mapa" id="mapa">
+      <button type="button" class="map-consent" id="mapa-btn">
+        <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+        <b>Ver el mapa</b>
+        <span>Al pulsar se carga Google Maps, que puede instalar sus cookies.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!--parte:partes/pie.html-->
+
+<!-- visor de fotos (se abre por el NOMBRE de la foto) -->
+<dialog class="visor" id="visor" aria-label="Foto ampliada">
+  <figure class="visor__fig">
+    <img id="visor-img" alt="" width="800" height="533">
+    <figcaption><span id="visor-pie"></span> <span class="visor__n cifra" id="visor-n"></span></figcaption>
+  </figure>
+  <button type="button" class="visor__btn visor__btn--ant" id="visor-ant" aria-label="Foto anterior"><svg class="ico" aria-hidden="true"><use href="#i-flecha-izq"/></svg></button>
+  <button type="button" class="visor__btn visor__btn--sig" id="visor-sig" aria-label="Foto siguiente"><svg class="ico" aria-hidden="true"><use href="#i-flecha-der"/></svg></button>
+  <button type="button" class="visor__cerrar" id="visor-cerrar" aria-label="Cerrar"><svg class="ico" aria-hidden="true"><use href="#i-cerrar"/></svg></button>
+</dialog>
+
+<!-- el foco del teclado: el contorno y un haz corto que sale del borde izquierdo (lo coloca main.js) -->
+<svg class="foco-haz" id="foco-haz" aria-hidden="true" focusable="false"><path class="foco-haz__cono"/><path class="foco-haz__marco"/></svg>
+
+<!--parte:partes/guiones.html-->
+</body>
+</html>

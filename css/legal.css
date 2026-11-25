@@ -1,0 +1,35 @@
+/* Las Riberas · páginas legales y 404 (con los tokens de css/base.css) */
+.legal-cab { background: var(--noche); color: var(--claro); --foco: var(--luz); }
+.legal-cab .env { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 76px; }
+.legal-marca { display: inline-flex; align-items: center; gap: .8rem; min-height: 44px; }
+.legal-marca__simbolo { width: auto; height: 42px; }
+.legal-marca__palabra { width: 128px; height: 19px; background: var(--claro); -webkit-mask: url(../marca/palabra.svg) left center / contain no-repeat; mask: url(../marca/palabra.svg) left center / contain no-repeat; }
+.volver { padding: .7rem 0; }
+.legal { padding: clamp(3rem, 7vw, 5rem) 0; }
+.legal .env { max-width: 46rem; }
+.legal h1 { font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem); font-weight: 600; margin-bottom: 1.6rem; }
+.legal h2 { font-size: 1.35rem; font-weight: 600; margin: 2.2rem 0 .7rem; }
+.legal p, .legal li { color: var(--texto); }
+.legal p + p { margin-top: .8rem; }
+.legal ul { list-style: none; display: grid; gap: .6rem; margin-top: .6rem; }
+.legal li { padding-left: 1.3rem; position: relative; }
+.legal li::before { content: ''; position: absolute; left: 0; top: .5em; width: .9rem; height: .55rem; background: var(--marino); clip-path: polygon(0 42%, 100% 0, 100% 100%, 0 58%); }
+.legal dl { display: grid; grid-template-columns: max-content 1fr; gap: .45rem 1.4rem; margin: 1.2rem 0; padding: 1.2rem 1.3rem; background: var(--niebla); border-radius: var(--radio); }
+.legal dt { font-weight: 600; }
+.legal dd { margin: 0; overflow-wrap: anywhere; }
+.legal code { font-family: var(--letra-cifras); font-size: .95em; }
+.aviso { margin-top: 1rem; padding: .8rem 1rem; border-left: 4px solid var(--marino); background: color-mix(in oklab, var(--luz) 22%, var(--bruma)); border-radius: 0 var(--radio) var(--radio) 0; }
+.aviso-corto { font-weight: 700; color: var(--marino); }
+.legal-pie { border-top: 1px solid var(--linea); padding: 1.6rem 0 2.4rem; }
+.legal-pie .env { display: flex; flex-wrap: wrap; gap: .4rem 1.6rem; }
+.legal-pie a { padding: .5rem 0; }
+@media (max-width: 559px) { .legal dl { grid-template-columns: 1fr; } .legal dd { margin-bottom: .5rem; } }
+/* 404: el faro con su haz que no alumbra nada */
+.no-hay { background: var(--noche); color: var(--claro); --foco: var(--luz); min-height: 100svh; display: grid; place-items: center; overflow-x: clip; }
+.no { width: min(100% - 2 * var(--gutter), 40rem); padding: 3rem 0; }
+.no__faro { position: relative; display: inline-block; }
+.no__faro img { position: relative; width: 110px; height: auto; }
+.no__haz { position: absolute; left: 50%; top: 27%; width: 70vw; max-width: 520px; height: 120px; transform: translateY(-50%); background: linear-gradient(90deg, color-mix(in oklab, var(--luz) 55%, transparent), transparent 85%); clip-path: polygon(0 47%, 100% 0, 100% 100%, 0 53%); }
+.no h1 { margin-top: 2rem; font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); font-weight: 600; }
+.no p { margin-top: 1rem; color: var(--claro-suave); }
+.no__acc { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }

@@ -1,0 +1,169 @@
+{
+ "_fuente": "ref/DATOS-LAS-RIBERAS.md (leído el 2026-11-25). Lo que no está ahí no se escribe; lo dudoso va a PENDIENTES.md.",
+ "apartamentos": [
+  {
+   "id": "mirador",
+   "nombre": "Mirador",
+   "motor": "Apartamento Mirador",
+   "foto": "mirador-salon",
+   "fotoAlt": "Salón del Apartamento Mirador con sofá claro, mesa de comedor y ventanas con cortinas azules",
+   "fotos": ["mirador-salon", "mirador-comedor", "mirador-cocina", "mirador-dormitorio", "mirador-bano", "mirador-salon-2", "mirador-mesa"],
+   "propio": "Vistas al faro de Cabo Vidio",
+   "texto": "Combina comodidad e impresionantes vistas al faro de Cabo Vidio. Cocina-salón comedor con sofá cama, un dormitorio con cama king-size y baño completo.",
+   "cifras": [{"v": "4", "t": "personas"}, {"v": "1", "t": "dormitorio"}, {"v": "1", "t": "baño"}],
+   "rasgos": [
+    {"icono": "faro", "nombre": "Vistas al faro", "detalle": "El de Cabo Vidio, el de su logo"},
+    {"icono": "cama", "nombre": "Cama king-size", "detalle": "O dos individuales"},
+    {"icono": "sofa", "nombre": "Sofá cama", "detalle": "En la cocina-salón comedor"},
+    {"icono": "ducha", "nombre": "Baño completo", "detalle": null}
+   ]
+  },
+  {
+   "id": "familiar",
+   "nombre": "Familiar",
+   "motor": "Apartamento Familiar",
+   "foto": "familiar-salon",
+   "fotoAlt": "Salón del Apartamento Familiar con sofá, televisión y un ventanal al prado",
+   "fotos": ["familiar-salon", "familiar-cocina", "familiar-cocina-2", "familiar-dormitorio", "familiar-bano", "familiar-bano-2", "familiar-cocina-3"],
+   "propio": "Dos baños, uno en suite",
+   "texto": "Para una estancia en familia: dos habitaciones amplias, dos baños (uno en suite) y cocina-salón comedor con sofá cama. Vistas al mar Cantábrico y al faro de Cabo Vidio.",
+   "cifras": [{"v": "6", "t": "personas"}, {"v": "2", "t": "dormitorios"}, {"v": "2", "t": "baños"}],
+   "rasgos": [
+    {"icono": "ducha", "nombre": "Dos baños", "detalle": "Uno de ellos en suite"},
+    {"icono": "cama", "nombre": "Dos dormitorios amplios", "detalle": "Cama king o camas separadas"},
+    {"icono": "sofa", "nombre": "Sofá cama", "detalle": "En la cocina-salón comedor"},
+    {"icono": "ola", "nombre": "Vistas al mar y al faro", "detalle": "El Cantábrico y Cabo Vidio"}
+   ]
+  },
+  {
+   "id": "deluxe",
+   "nombre": "Deluxe con jacuzzi",
+   "motor": "Apartamento Deluxe con Jacuzzi",
+   "foto": "deluxe-dosel",
+   "fotoAlt": "Dormitorio del Apartamento Deluxe con cama con dosel de madera y la bañera de hidromasaje junto a la ventana",
+   "fotos": ["deluxe-dosel", "deluxe-jacuzzi", "deluxe-dormitorio", "deluxe-salon", "deluxe-cocina", "deluxe-bano", "deluxe-jacuzzi-2", "deluxe-salon-2", "deluxe-mesa"],
+   "propio": "Bañera de hidromasaje",
+   "texto": "Noches con bañera de hidromasaje y vistas hacia el mar y el atardecer. La escapada incluye como detalle de bienvenida una botella de sidra y una caja de bombones.",
+   "cifras": [{"v": "2+2", "t": "adultos y niños"}, {"v": "1", "t": "dormitorio"}, {"v": "1", "t": "baño"}],
+   "rasgos": [
+    {"icono": "jacuzzi", "nombre": "Bañera de hidromasaje", "detalle": "En el dormitorio"},
+    {"icono": "sidra", "nombre": "Sidra y bombones", "detalle": "El detalle de bienvenida"},
+    {"icono": "cama", "nombre": "Cama king-size", "detalle": null},
+    {"icono": "sol", "nombre": "Vistas al mar y al atardecer", "detalle": null}
+   ]
+  }
+ ],
+ "comunes": [
+  {"icono": "suelo", "nombre": "Suelo radiante", "detalle": "Calefacción por el suelo"},
+  {"icono": "cocina", "nombre": "Cocina equipada", "detalle": "Horno, microondas, lavavajillas, nevera, tostadora y menaje"},
+  {"icono": "wifi", "nombre": "Wifi y televisión", "detalle": null},
+  {"icono": "toalla", "nombre": "Ropa de cama y toallas", "detalle": "Secador y artículos de aseo"},
+  {"icono": "cuna", "nombre": "Cunas", "detalle": "Disponibles"},
+  {"icono": "lavadora", "nombre": "Lavandería", "detalle": "Servicio de lavandería"},
+  {"icono": "coche", "nombre": "Aparcamiento", "detalle": null},
+  {"icono": "huella", "nombre": "Mascotas", "detalle": "5 € por noche"},
+  {"icono": "nofumar", "nombre": "Sin humo", "detalle": "Apartamentos para no fumadores"}
+ ],
+ "mascotas": "Deben comportarse bien y nunca quedarse solos en los apartamentos.",
+ "piscina": {
+  "titulo": "La piscina climatizada",
+  "texto": "Cubierta, en un pabellón de madera con grandes ventanales al prado. Tumbonas dentro y una terraza fuera.",
+  "fotos": [
+   {"n": "piscina", "alt": "La piscina climatizada con el agua azul y los ventanales del pabellón al prado"},
+   {"n": "piscina-tumbonas", "alt": "Tumbonas junto a la piscina, bajo el techo de vigas de madera"},
+   {"n": "piscina-ventanal", "alt": "El vaso de la piscina desde una esquina, con el prado al otro lado del cristal"}
+  ]
+ },
+ "estancias": [
+  {"id": "salon", "nombre": "Salón", "corto": "Salón", "fotos": [
+   {"n": "mirador-salon", "a": "Mirador", "alt": "Salón del Mirador con sofá y ventanas al prado"},
+   {"n": "familiar-salon", "a": "Familiar", "alt": "Salón del Familiar con sofá, mesa y ventanal"},
+   {"n": "deluxe-salon", "a": "Deluxe", "alt": "Salón del Deluxe con sofá gris y mesa redonda"},
+   {"n": "mirador-comedor", "a": "Mirador", "alt": "Comedor del Mirador con la mesa puesta"},
+   {"n": "mirador-sofa", "a": "Mirador", "alt": "Sofá del Mirador bajo el techo de madera"},
+   {"n": "mirador-salon-2", "a": "Mirador", "alt": "Salón del Mirador con la ventana de cortinas azules"},
+   {"n": "deluxe-salon-2", "a": "Deluxe", "alt": "Sofá y mesa redonda del Deluxe"}
+  ]},
+  {"id": "cocina", "nombre": "Cocina", "corto": "Cocina", "fotos": [
+   {"n": "mirador-cocina", "a": "Mirador", "alt": "Cocina del Mirador con encimera oscura, horno y campana"},
+   {"n": "familiar-cocina", "a": "Familiar", "alt": "Cocina del Familiar con muebles blancos y puerta de madera"},
+   {"n": "deluxe-cocina", "a": "Deluxe", "alt": "Cocina del Deluxe con azulejos de dibujo y horno"},
+   {"n": "familiar-cocina-3", "a": "Familiar", "alt": "La cocina y la mesa del Familiar bajo el techo de madera"},
+   {"n": "mirador-cocina-2", "a": "Mirador", "alt": "Cocina del Mirador con la puerta de madera"},
+   {"n": "familiar-cocina-2", "a": "Familiar", "alt": "Cocina blanca del Familiar con campana negra"},
+   {"n": "mirador-mesa", "a": "Mirador", "alt": "Mesa del Mirador con la cocina al fondo"},
+   {"n": "mirador-cocina-3", "a": "Mirador", "alt": "Cocina y salón del Mirador en un solo espacio"},
+   {"n": "deluxe-mesa", "a": "Deluxe", "alt": "Mesa del Deluxe junto a la cocina"}
+  ]},
+  {"id": "dormitorio", "nombre": "Dormitorios", "corto": "Dormir", "fotos": [
+   {"n": "deluxe-dormitorio", "a": "Deluxe", "alt": "Dormitorio del Deluxe con cama con dosel de madera"},
+   {"n": "mirador-dormitorio", "a": "Mirador", "alt": "Dormitorio del Mirador con cama doble y armario de madera"},
+   {"n": "familiar-dormitorio", "a": "Familiar", "alt": "Dormitorio del Familiar con cama y ventana"},
+   {"n": "mirador-dormitorio-2", "a": "Mirador", "alt": "Cama del Mirador con cabecero tapizado"}
+  ]},
+  {"id": "bano", "nombre": "Baños", "corto": "Baño", "fotos": [
+   {"n": "mirador-bano", "a": "Mirador", "alt": "Baño del Mirador con ducha de cristal"},
+   {"n": "familiar-bano", "a": "Familiar", "alt": "Baño del Familiar con lavabo de sobre encimera y espejo redondo"},
+   {"n": "deluxe-bano", "a": "Deluxe", "alt": "Baño del Deluxe bajo el techo de madera"},
+   {"n": "familiar-bano-2", "a": "Familiar", "alt": "Lavabo y ducha del baño en suite del Familiar"},
+   {"n": "mirador-bano-2", "a": "Mirador", "alt": "Lavabo del Mirador con espejo y toallas"}
+  ]},
+  {"id": "jacuzzi", "nombre": "El hidromasaje del Deluxe", "corto": "Jacuzzi", "fotos": [
+   {"n": "deluxe-jacuzzi", "a": "Deluxe", "alt": "Bañera de hidromasaje junto a la ventana con el prado al fondo"},
+   {"n": "deluxe-dosel", "a": "Deluxe", "alt": "Cama con dosel y bañera de hidromasaje en el mismo dormitorio"},
+   {"n": "deluxe-jacuzzi-2", "a": "Deluxe", "alt": "Dormitorio del Deluxe con la bañera de hidromasaje y la botella de bienvenida sobre la cama"}
+  ]},
+  {"id": "piscina-est", "nombre": "La piscina", "corto": "Piscina", "fotos": [
+   {"n": "piscina-vaso", "a": "Piscina", "alt": "El vaso de la piscina con la escalera y el techo de madera"},
+   {"n": "piscina-prado", "a": "Piscina", "alt": "Ventanal de la piscina al prado con dos tumbonas"},
+   {"n": "piscina-2", "a": "Piscina", "alt": "Tumbonas junto a la piscina"},
+   {"n": "piscina-3", "a": "Piscina", "alt": "La piscina con un pilar de madera en primer plano"},
+   {"n": "piscina-5", "a": "Piscina", "alt": "La piscina con el prado al otro lado del cristal"},
+   {"n": "piscina-6", "a": "Piscina", "alt": "Un rincón de la piscina con sillas y plantas"},
+   {"n": "piscina-15", "a": "Piscina", "alt": "Bancos junto a la piscina bajo la ventana"}
+  ]},
+  {"id": "fuera", "nombre": "Fuera", "corto": "Fuera", "fotos": [
+   {"n": "pabellon", "a": "Fuera", "alt": "El pabellón de la piscina por fuera, de madera y cristal, con tumbonas en la terraza"},
+   {"n": "fachada", "a": "Fuera", "alt": "La casa de una planta con porche y tejado de teja, con el prado delante"},
+   {"n": "pabellon-terraza", "a": "Fuera", "alt": "La terraza con tumbonas delante del pabellón de cristal"},
+   {"n": "pabellon-flores", "a": "Fuera", "alt": "Tumbona y hortensias en la terraza del pabellón"},
+   {"n": "terraza-tumbonas", "a": "Fuera", "alt": "Tumbonas al sol en la terraza de madera"}
+  ]}
+ ],
+ "condiciones": [
+  {"t": "Entrada", "v": "Desde las 15:30"},
+  {"t": "Salida", "v": "Antes de las 11:00"},
+  {"t": "Cancelación", "v": "Gratis hasta 7 días antes de la llegada. Fuera de plazo, o si no te presentas, se cobra el 30 %."},
+  {"t": "Pago", "v": "En el alojamiento. La tarjeta queda como garantía. IVA incluido."},
+  {"t": "Mascotas", "v": "Sí, 5 € por noche. Deben comportarse bien y nunca quedarse solas en el apartamento."}
+ ],
+ "resenas": {
+  "nota": "4,9",
+  "sobre": "5",
+  "recuentoTexto": "más de 250 reseñas",
+  "leida": "sensacionrural.es, en su bloque «Reseñas en Google» (4,9 con 269 reseñas el 2026-11-25). No se ha podido abrir la ficha de Google directamente.",
+  "enlace": "https://www.google.com/maps/search/?api=1&query=Apartamentos%20Las%20Riberas%20Ovi%C3%B1ana%20Cudillero"
+ },
+ "contacto": {
+  "direccion": "Vivigo s/n, Oviñana",
+  "localidad": "Cudillero (Asturias)",
+  "cp": null,
+  "telefonos": [{"tel": "+34686498264", "texto": "686 498 264", "whatsapp": true}, {"tel": "+34626467401", "texto": "626 467 401", "whatsapp": false}],
+  "whatsapp": "https://wa.me/34686498264",
+  "correo": "info@apartamentoslasriberas.com",
+  "instagram": "https://www.instagram.com/apartamentoslasriberas/",
+  "facebook": "https://www.facebook.com/ApartamentosLasRiberas/",
+  "lat": 43.5773554,
+  "lon": -6.2490802,
+  "coordenadas": "Catastro, edificio E00306700QJ22G. El pin de su Google Maps (43.577007, -6.2514292) cae en el bosque, ~190 m al oeste"
+ },
+ "titular": {
+  "nombre": "Complejo Turístico Playa La Vallina S.L.",
+  "nif": "B74444522",
+  "domicilio": "Vivigo s/n, Oviñana, Cudillero (Asturias)"
+ },
+ "motor": {
+  "base": "https://booking.redforts.com/es/iframe/i8ZN/",
+  "nombre": "Redforts"
+ }
+}

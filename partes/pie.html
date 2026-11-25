@@ -1,0 +1,52 @@
+<!-- ============ pie (noche): el logo entero, con las tres olas. Lo que la portada abrió, el pie lo cierra: al llegar,
+     la linterna del faro se ENCIENDE y su haz da una pasada. Con movimiento reducido, ya encendido. ============ -->
+<footer class="pie" id="pie">
+  <div class="env">
+    <div class="pie__arriba">
+      <a class="pie__logo" href="./" aria-label="Apartamentos Las Riberas, a la portada">
+        <span class="pie__faro">
+          <span class="pie__haz" aria-hidden="true"></span>
+<!--simbolo:pie__simbolo-->
+        </span>
+        <span class="pie__palabra" aria-hidden="true"></span>
+        <span class="pie__sub" aria-hidden="true">Apartamentos rurales</span>
+      </a>
+      <div class="pie__cols">
+        <div>
+          <h2 class="pie__h">Dónde</h2>
+          <p>Vivigo s/n, Oviñana<br>Cudillero (Asturias)</p>
+          <p><a href="#contacto">Cómo llegar</a></p>
+        </div>
+        <div>
+          <h2 class="pie__h">Reservas</h2>
+          <p><a class="cifra" href="tel:+34686498264">686 498 264</a><br><a class="cifra" href="tel:+34626467401">626 467 401</a><br><a href="mailto:info@apartamentoslasriberas.com">info@apartamentoslasriberas.com</a></p>
+          <p><a href="#reservar">Su motor de reservas</a></p>
+        </div>
+        <div>
+          <h2 class="pie__h">Síguelos</h2>
+          <p><a href="https://www.instagram.com/apartamentoslasriberas/" target="_blank" rel="noopener">Instagram<span class="vh"> (se abre en otra pestaña)</span></a><br><a href="https://www.facebook.com/ApartamentosLasRiberas/" target="_blank" rel="noopener">Facebook<span class="vh"> (se abre en otra pestaña)</span></a></p>
+        </div>
+      </div>
+    </div>
+    <div class="pie__legal">
+      <nav aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a><a href="accesibilidad.html">Accesibilidad</a><button type="button" id="abrir-cookies">Preferencias de cookies</button></nav>
+      <p>© <span id="anno">2026</span> Apartamentos Las Riberas · Oviñana, Cudillero (Asturias)</p>
+    </div>
+  </div>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Sin cookies de análisis ni de publicidad: solo se guarda que has visto este aviso. Las letras vienen de Google Fonts; el mapa de Google y el motor de reservas (Redforts, con su cookie de sesión) solo se cargan si los pides. <a href="cookies.html">Más información</a></p>
+  <div class="cookies__acc">
+    <button class="btn btn--oscuro" type="button" id="ck-si">Entendido</button>
+    <button class="btn btn--linea" type="button" id="ck-no">Solo lo necesario</button>
+  </div>
+</div>
+
+<!-- MANDO DE MAQUETA (no viaja al cliente): solo con ?revision -->
+<div class="mando" id="mando" role="group" aria-label="Dos versiones de la misma web" hidden>
+  <span class="mando__eti">Versión</span>
+  <button type="button" data-densidad="faro" aria-pressed="true">Faro</button>
+  <button type="button" data-densidad="sobria" aria-pressed="false">Sobria</button>
+</div>
+<!-- fin del MANDO DE MAQUETA -->

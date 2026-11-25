@@ -1,0 +1,6 @@
+{
+ "grupo": 1,
+ "periodo_s": 5,
+ "fuente": "https://www.openstreetmap.org/node/100170985",
+ "nota": "Destello blanco único cada 5 s (seamark:light:character Fl, period 5, sequence 0.3+(4.7), altura focal 101 m, alcance 25 millas, referencia D 1641 del Libro de Faros), leído en OpenStreetMap el 2026-11-25. Coincide con Lighthouse Directory (ibiblio.org/lighthouse/esas.htm: «white flash every 5 s», Admiralty D1641) y la Wikipedia. NO confirmado aún en la fuente oficial (Libro de Faros del IHM o Puertos del Estado: no se pudo abrir). Turismo de Asturias dice «4 destellos cada 20 segundos»: contradice; ver PENDIENTES.md."
+}

@@ -1,0 +1,43 @@
+<!-- el buscador (js/reserva.js): calendario propio de llegada y salida. Al pulsar «Buscar en su motor» se CREA el
+     iframe de su Redforts con ?arrival=AAAA-MM-DD&departure=AAAA-MM-DD (antes no existe). Sin fechas, el motor sin
+     parámetros. Redforts no recibe personas por URL: se eligen dentro. -->
+<div class="reservar__rejilla">
+  <div class="reservar__motor">
+    <p class="real" role="note"><span class="real__haz" aria-hidden="true"></span><span><b>Es su motor de reservas real.</b> Lo que se abre aquí es el motor de Las Riberas (Redforts): las reservas que hagas dentro son de verdad. Esta web es una propuesta y no guarda nada.</span></p>
+
+    <form class="busca" id="busca" novalidate>
+      <div class="busca__fechas" aria-live="polite">
+        <p><span class="busca__eti">Llegada</span><b data-fecha="entrada">Elige día</b></p>
+        <p><span class="busca__eti">Salida</span><b data-fecha="salida">Elige día</b></p>
+        <p class="busca__noches cifra" data-noches></p>
+      </div>
+      <div class="cal" id="cal" role="group" aria-label="Calendario de llegada y salida">
+        <noscript><p>El calendario necesita JavaScript. Abre su <a href="https://booking.redforts.com/es/iframe/i8ZN/" target="_blank" rel="noopener">motor de reservas</a> o llama al <a href="tel:+34686498264">686 498 264</a>.</p></noscript>
+      </div>
+      <p class="busca__resumen" data-resumen>Elige el día de llegada.</p>
+      <p class="busca__pista" data-pista>En su motor eliges el apartamento y cuántos sois.</p>
+      <div class="busca__acc">
+        <button class="btn btn--luz busca__ir" type="submit" id="busca-ir">Buscar en su motor</button>
+        <button type="button" class="enlace" id="motor-sin-fechas">Abrir su calendario sin fechas</button>
+      </div>
+    </form>
+
+    <div class="motor" id="motor" aria-live="polite">
+      <div class="motor__vacio" id="motor-vacio">
+        <span class="motor__haz" aria-hidden="true"></span>
+        <p>Aquí se abrirá su motor con tus fechas: los apartamentos libres, el precio y la reserva.</p>
+      </div>
+      <p class="motor__estado" id="motor-estado"></p>
+      <p class="motor__fuera" id="motor-fuera-p"><a id="motor-fuera" href="https://booking.redforts.com/es/iframe/i8ZN/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-fuera"/></svg>Abrir el motor en otra pestaña<span class="vh"> (se abre en otra pestaña)</span></a><span class="motor__nota">Si tu navegador (Safari, por ejemplo) no deja reservar dentro de la página, ábrelo aquí: es el mismo motor.</span></p>
+    </div>
+  </div>
+
+  <aside class="condiciones" aria-labelledby="t-condiciones">
+    <h3 id="t-condiciones" class="condiciones__tit">Condiciones</h3>
+<!--condiciones-->
+    <div class="condiciones__alt">
+      <p>¿Prefieres hablar con ellos?</p>
+      <p class="condiciones__lineas"><a class="cifra" href="tel:+34686498264"><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg>686 498 264</a><a class="cifra" href="tel:+34626467401"><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg>626 467 401</a><a href="https://wa.me/34686498264" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp<span class="vh"> (se abre en otra pestaña)</span></a><a href="mailto:info@apartamentoslasriberas.com"><svg class="ico" aria-hidden="true"><use href="#i-correo"/></svg>info@apartamentoslasriberas.com</a></p>
+    </div>
+  </aside>
+</div>

@@ -1,0 +1,464 @@
+/* =====================================================================
+   Apartamentos Las Riberas · «La luz de Vidio» · secciones. Tokens en css/base.css.
+   El haz se hereda con mesura: la portada (el haz que gira y enciende el titular y la fachada), el haz corto que marca
+   lo activo (cabecera, apartamento elegido, estancia, sitio de «Alrededor»), el foco del teclado y el faro del pie que
+   se enciende. Las tres olas del logo, solo en el logo. Nada más.
+   ===================================================================== */
+
+/* =====================================================================
+   CABECERA Y MENÚ
+   ===================================================================== */
+.cab { position: fixed; inset: 0 0 auto; z-index: 90; height: var(--cabecera); color: var(--claro); --foco: var(--luz); --s-mar: var(--claro); --haz-color: var(--luz);
+  transition: background-color .35s var(--ease), color .35s var(--ease), box-shadow .35s var(--ease); }
+.cab.sc { background: color-mix(in oklab, var(--bruma) 90%, transparent); color: var(--noche); --foco: var(--marino); --s-mar: var(--marino); --haz-color: var(--marino);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--linea); }
+.cab__in { height: 100%; width: min(100% - 2 * var(--gutter), 1440px); margin-inline: auto; display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 2.2rem); }
+.marca { display: inline-flex; align-items: center; gap: .75rem; text-decoration: none; margin-right: auto; min-height: 44px; }
+.simbolo .s-mar { fill: var(--s-mar, var(--marino)); transition: fill .35s var(--ease); }
+.simbolo .s-ola { fill: var(--ola); }
+.simbolo .s-luz { fill: var(--luz); }
+.marca__simbolo { width: auto; height: 42px; }
+.marca__txt { display: grid; gap: .3rem; }
+.marca__palabra { width: 128px; height: 19px; background: currentColor; -webkit-mask: url(../marca/palabra.svg) left center / contain no-repeat; mask: url(../marca/palabra.svg) left center / contain no-repeat; }
+.marca__sub { font: 600 .62rem/1 var(--letra-texto); letter-spacing: .16em; text-transform: uppercase; }
+.cab__nav { display: flex; gap: clamp(.9rem, 1.6vw, 1.7rem); }
+.cab__nav a { display: inline-flex; align-items: center; font: 500 .95rem/1 var(--letra-titular); text-decoration: none; padding: .9rem 0; position: relative; }
+.cab__nav a[aria-current]::before { content: ''; position: absolute; left: -1.35em; top: 50%; width: 1.15em; height: .75em; transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--haz-color) 0 10%, color-mix(in oklab, var(--haz-color) 25%, transparent)); clip-path: polygon(0 42%, 100% 0, 100% 100%, 0 58%); }
+.cab__tel { font-size: 1rem; text-decoration: none; padding: .8rem 0; }
+.cab__reservar { min-height: 44px; padding: .55rem 1.15rem; }
+.cab__menu { display: none; width: 48px; height: 48px; border: 0; background: none; cursor: pointer; position: relative; z-index: 2; }
+.cab__menu i { position: absolute; left: 12px; right: 12px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s var(--ease), top .3s var(--ease); }
+.cab__menu i:first-of-type { top: 19px; }
+.cab__menu i:last-of-type { top: 28px; }
+body.menu .cab__menu i:first-of-type { top: 23px; transform: rotate(45deg); }
+body.menu .cab__menu i:last-of-type { top: 23px; transform: rotate(-45deg); }
+/* la cabecera lleva backdrop-filter: el menú fijo se mide con 100dvh, nunca con inset:0 (checklist 3) */
+.menu-movil { position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; z-index: 1; background: var(--noche); color: var(--claro); --foco: var(--luz);
+  padding: calc(var(--cabecera) + 1.5rem) var(--gutter) 2rem; overflow-y: auto; visibility: hidden; opacity: 0; transition: opacity .3s var(--ease), visibility 0s .3s; }
+body.menu .menu-movil { visibility: visible; opacity: 1; transition: opacity .3s var(--ease); }
+body.menu .cab { color: var(--claro); background: transparent; box-shadow: none; --s-mar: var(--claro); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.menu-movil nav { display: grid; gap: .2rem; }
+.menu-movil nav a { display: grid; text-decoration: none; padding: .55rem 0; border-bottom: 1px solid var(--linea-clara); font: 500 clamp(1.5rem, 7vw, 2.1rem)/1.1 var(--letra-titular); }
+.menu-movil nav small { font: 400 .88rem/1.3 var(--letra-texto); color: var(--claro-suave); order: 2; margin-top: .25rem; }
+.menu-movil__tel { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2rem; font-size: 1.1rem; }
+.menu-movil__tel a { padding: .4rem 0; }
+
+@media (max-width: 1179px) { .cab__nav { display: none; } }
+@media (max-width: 899px) { .cab__tel { display: none; } .cab__menu { display: block; } }
+@media (max-width: 459px) { .cab__reservar { display: none; } }
+@media (max-width: 359px) { .marca__txt { display: none; } }
+
+/* =====================================================================
+   1. PORTADA «La luz de Vidio»
+   Una escena de 100svh con capas, de atrás adelante: cielo (0), titular (1), titular encendido (1, js), faro (2),
+   fachada (3), fachada encendida (4, js), haz (5) y destello de la linterna (6). --n es la noche (0 día, 1 noche):
+   lo pone js/portada.js con el sol de Cudillero; sin JS, día. Posiciones en CSS puro (también sin JS):
+   la fachada se ancla abajo (recorta el césped), el faro se planta detrás del tejado y el haz nace en su linterna.
+   ===================================================================== */
+.portada { position: relative; color: var(--claro); --foco: var(--luz); --n: 0; }
+.portada__escena { position: relative; height: 100svh; min-height: 560px; overflow: hidden; touch-action: pan-y; isolation: isolate;
+  --foto-w: max(100vw, 1180px); --foto-h: calc(var(--foto-w) * .5151); --foco-x: .56;
+  --faro-x: 74%; --faro-h: min(64svh, 52vw); --faro-r: .6125; --lx: .5; --ly: .2477; --haz-l: 170vmax;
+  --fx: var(--faro-x); --fy: calc(100% - .26 * var(--foto-h) - var(--faro-h) * (1 - var(--ly)));
+  /* el color del cielo donde va el texto (para el contraste medido y como respaldo del degradado) */
+  background-color: color-mix(in oklab, color-mix(in oklab, var(--marino) 72%, var(--ola)), color-mix(in oklab, var(--noche) 88%, var(--marino)) calc(var(--n) * 100%)); }
+.portada__cielo { position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(180deg,
+    color-mix(in oklab, color-mix(in oklab, var(--marino) 90%, var(--ola)), var(--noche) calc(var(--n) * 100%)) 0%,
+    color-mix(in oklab, color-mix(in oklab, var(--marino) 72%, var(--ola)), color-mix(in oklab, var(--noche) 88%, var(--marino)) calc(var(--n) * 100%)) 58%,
+    color-mix(in oklab, color-mix(in oklab, var(--ola) 62%, var(--bruma)), color-mix(in oklab, var(--noche) 62%, var(--marino)) calc(var(--n) * 100%)) 100%); }
+/* las estrellas de noche: puntos fijos (un solo fondo, sin animar) */
+.portada__cielo::after { content: ''; position: absolute; inset: 0 0 35% 0; opacity: calc(var(--n) * .8);
+  background-image: radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 27% 9%, #fff 50%, transparent 51%), radial-gradient(1.4px 1.4px at 44% 22%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 58% 12%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 66% 31%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 83% 15%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 91% 27%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 6% 36%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 36% 40%, #fff 50%, transparent 51%); }
+
+.portada__texto { position: absolute; z-index: 1; left: var(--gutter); top: calc(var(--cabecera) + clamp(1.2rem, 5svh, 3.6rem)); width: min(100% - 2 * var(--gutter), 66rem); }
+.portada__tit { font-size: clamp(2.9rem, 1.1rem + 7.2vw, 9.2rem); font-weight: 600; line-height: .93; letter-spacing: -.045em;
+  color: color-mix(in oklab, color-mix(in oklab, var(--bruma) 80%, var(--ola)), color-mix(in oklab, var(--bruma) 60%, var(--noche)) calc(var(--n) * 100%)); }
+.portada__pre { display: block; margin-bottom: .95rem; font: 500 clamp(.98rem, .92rem + .3vw, 1.2rem)/1.2 var(--letra-texto); letter-spacing: .01em; color: var(--claro); }
+.portada__l { display: block; padding-bottom: .04em; }
+.portada__sub { max-width: 31rem; margin-top: clamp(1.1rem, 2.6svh, 1.8rem); font-size: clamp(1.02rem, .97rem + .3vw, 1.24rem); line-height: 1.5; color: var(--claro); text-shadow: 0 1px 12px color-mix(in oklab, var(--noche) 45%, transparent); }
+.portada__acc { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: clamp(1.2rem, 3svh, 2rem); }
+
+.portada__faro { position: absolute; z-index: 2; height: var(--faro-h); width: calc(var(--faro-h) * var(--faro-r)); left: calc(var(--faro-x) - var(--faro-h) * var(--faro-r) / 2); bottom: calc(.26 * var(--foto-h)); overflow: visible; }
+/* el faro, blanco como el de verdad, con la torre en sombra a la derecha (que no se confunda con el titular de detrás);
+   de noche, silueta marino */
+.faro__s1 { stop-color: color-mix(in oklab, var(--bruma), color-mix(in oklab, var(--marino) 72%, var(--noche)) calc(var(--n) * 100%)); }
+.faro__s2 { stop-color: color-mix(in oklab, color-mix(in oklab, var(--bruma) 55%, var(--marino)), color-mix(in oklab, var(--marino) 45%, var(--noche)) calc(var(--n) * 100%)); }
+.faro__cuerpo { stroke: color-mix(in oklab, var(--marino) 70%, transparent); stroke-width: 1.5px; vector-effect: non-scaling-stroke; paint-order: stroke; }
+.faro__luz { fill: var(--luz); }
+
+.portada__foto { position: absolute; z-index: 3; width: var(--foto-w); height: var(--foto-h); left: calc(50% - var(--foco-x) * var(--foto-w)); bottom: calc(-.24 * var(--foto-h)); pointer-events: none; }
+.portada__foto picture, .portada__foto img { width: 100%; height: 100%; }
+.portada__foto img { filter: brightness(calc(1 - .56 * var(--n))) saturate(calc(1 - .45 * var(--n))); }
+
+/* el haz: una cuña de luz que nace en la linterna; js/portada.js la gira (sin JS, quieta) */
+.portada__haz { position: absolute; z-index: 5; left: var(--fx); top: var(--fy); width: 0; height: 0; transform: rotate(var(--giro, 196deg)); pointer-events: none; }
+.portada__cono { position: absolute; left: 0; top: calc(var(--haz-l) * -.13); width: var(--haz-l); height: calc(var(--haz-l) * .26);
+  clip-path: polygon(0 48.6%, 100% 0, 100% 100%, 0 51.4%); mix-blend-mode: screen;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--luz) 85%, transparent) 0%, color-mix(in oklab, var(--luz) 30%, transparent) 30%, transparent 78%);
+  opacity: calc(.22 + .58 * var(--n)); }
+.portada__destello { position: absolute; z-index: 6; left: var(--fx); top: var(--fy); width: calc(var(--faro-h) * .5); aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--luz) 85%, transparent) 0%, color-mix(in oklab, var(--luz) 25%, transparent) 28%, transparent 62%);
+  mix-blend-mode: screen; opacity: calc(.35 + .65 * var(--n)); }
+/* las copias encendidas (las crea js/portada.js): misma escena, recortada por la cuña del haz que gira */
+.portada__luz { position: absolute; left: var(--fx); top: var(--fy); width: 0; height: 0; pointer-events: none; }
+.portada__luz--tit { z-index: 1; }
+.portada__luz--foto { z-index: 4; }
+.portada__cuna { position: absolute; left: 0; top: calc(var(--haz-l) * -.13); width: var(--haz-l); height: calc(var(--haz-l) * .26); clip-path: polygon(0 48.6%, 100% 0, 100% 100%, 0 51.4%); overflow: hidden; }
+.portada__contra { position: absolute; width: var(--esc-w, 100vw); height: var(--esc-h, 100svh); }
+.portada__contra .portada__texto { visibility: hidden; }
+.portada__contra .portada__tit { visibility: visible; color: color-mix(in oklab, color-mix(in oklab, var(--luz) 58%, var(--bruma)), var(--luz) calc(var(--n) * 100%));
+  text-shadow: 0 0 .28em color-mix(in oklab, var(--luz) calc(25% + var(--n) * 40%), transparent); }
+.portada__contra .portada__pre { visibility: hidden; }
+.portada__contra .portada__foto img { filter: brightness(1.14) saturate(1.06) sepia(.12); }
+
+@media (max-width: 1179px) and (min-width: 700px) { .portada__escena { --faro-x: 78%; --faro-h: min(56svh, 44vw); } }
+@media (max-width: 699px) {
+  .portada__escena { --foto-w: 260vw; --foco-x: .64; --faro-x: 82%; --faro-h: clamp(220px, calc(100svh - .26 * var(--foto-h) - 405px), 440px); }
+  .portada__sub { max-width: 64vw; }
+  .portada__acc .btn--linea-clara { display: none; }
+}
+/* móviles bajos (360×640, 375×667): el faro, más pequeño y pegado al borde derecho, para no tapar el texto */
+@media (max-width: 699px) and (max-height: 740px) {
+  .portada__escena { --faro-h: 200px; --faro-x: calc(100% - 53px); }
+  .portada__sub { max-width: 60vw; }
+}
+
+/* =====================================================================
+   SECCIONES COMUNES
+   ===================================================================== */
+.sec { padding-block: clamp(4.5rem, 9vw, 8.5rem); }
+.sec-cab { max-width: 46rem; margin-bottom: clamp(2.2rem, 4vw, 3.5rem); }
+.sec-tit { font-size: clamp(2.1rem, 1.3rem + 2.8vw, 3.7rem); font-weight: 600; letter-spacing: -.035em; }
+.sec-txt { margin-top: 1rem; font-size: clamp(1.05rem, 1rem + .25vw, 1.2rem); color: var(--texto-suave); max-width: 40rem; }
+.foto-btn { display: block; width: 100%; padding: 0; border: 0; background: var(--niebla); cursor: zoom-in; overflow: hidden; border-radius: var(--radio); }
+.foto-btn img, .foto-btn picture { width: 100%; height: 100%; }
+.foto-btn img { object-fit: cover; transition: transform .8s var(--ease); }
+@media (hover: hover) { .foto-btn:hover img { transform: scale(1.025); } }
+/* las fotos que solo existen a 800 px: nunca más anchas en pantalla que eso */
+picture[data-real] img { max-width: 800px; }
+
+/* =====================================================================
+   2. TRES TIPOS DE APARTAMENTO
+   ===================================================================== */
+.aptos { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: start; }
+.aptos__sel { display: none; }
+.js .aptos__sel { display: grid; gap: .2rem; position: sticky; top: calc(var(--cabecera) + 2rem); }
+.aptos__sel [role="tab"] { display: grid; grid-template-columns: 4.2rem 1fr; align-items: center; gap: .3rem 1rem; padding: 1rem .4rem 1rem 0; border: 0; border-bottom: 1px solid var(--linea); background: none; text-align: left; cursor: pointer; color: var(--texto-suave); position: relative; transition: color .25s var(--ease); }
+.aptos__sel [role="tab"]:hover { color: var(--noche); }
+.aptos__sel [role="tab"][aria-selected="true"] { color: var(--noche); }
+.aptos__sel [role="tab"][aria-selected="true"]::before { content: ''; position: absolute; left: -2.1rem; top: 50%; width: 1.7rem; height: 1rem; transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--marino) 0 10%, color-mix(in oklab, var(--marino) 25%, transparent)); clip-path: polygon(0 42%, 100% 0, 100% 100%, 0 58%); }
+.aptos__n { font-size: clamp(2.6rem, 2rem + 2vw, 3.6rem); line-height: .9; font-weight: 500; text-align: right; }
+.aptos__nom { display: grid; gap: .2rem; }
+.aptos__nom b { font: 600 1.2rem/1.15 var(--letra-titular); }
+.aptos__nom small { font-size: .9rem; line-height: 1.3; }
+.aptos__fichas { display: grid; gap: clamp(4rem, 8vw, 6rem); }
+.apto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.6rem clamp(1.6rem, 3.5vw, 3.2rem); }
+.apto__f { grid-column: 1 / -1; max-width: 800px; }
+.apto__f .foto-btn { aspect-ratio: 3 / 2; }
+.apto__f figcaption { margin-top: .4rem; font-size: .95rem; }
+.apto__tit { font-size: clamp(1.9rem, 1.3rem + 1.8vw, 2.9rem); font-weight: 600; letter-spacing: -.03em; }
+.apto__pre { display: block; font: 500 1rem/1.3 var(--letra-texto); letter-spacing: 0; color: var(--texto-suave); margin-bottom: .2rem; }
+.apto__propio { display: flex; align-items: center; margin-top: .9rem; font: 600 1.08rem/1.3 var(--letra-titular); color: var(--marino); --haz-color: var(--marino); }
+.apto__txt { margin-top: .9rem; color: var(--texto-suave); }
+.apto__cifras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.8rem; padding-top: 1.2rem; border-top: 2px solid var(--marino); }
+.apto__cifras div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
+.apto__cifras dd { font-size: clamp(2.6rem, 2rem + 2.2vw, 3.9rem); line-height: 1; font-weight: 500; color: var(--noche); white-space: nowrap; }
+.apto__cifras dt { margin-top: .4rem; font-size: .92rem; line-height: 1.3; color: var(--texto-suave); }
+.apto__rasgos { display: grid; gap: 1.15rem; align-content: start; }
+.apto__rasgos li, .comunes__lista li { display: grid; grid-template-columns: 30px 1fr; column-gap: .85rem; align-items: start; }
+.apto__rasgos .ico, .comunes__lista .ico { width: 30px; height: 30px; color: var(--marino); grid-row: 1 / 3; }
+.apto__rasgos b, .comunes__lista b { font-weight: 600; line-height: 1.3; }
+.apto__rasgos span, .comunes__lista span { grid-column: 2; font-size: .92rem; line-height: 1.35; color: var(--texto-suave); }
+.apto__acc { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.4rem; margin-top: .6rem; }
+.apto__motor { font-size: .92rem; color: var(--texto-suave); }
+.comunes { margin-top: clamp(3.5rem, 7vw, 5.5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--linea); }
+.comunes__tit { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); font-weight: 600; }
+.comunes__lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem 2rem; margin-top: 1.8rem; }
+.comunes__nota { margin-top: 1.8rem; color: var(--texto-suave); font-size: .95rem; }
+.vistazo { display: none; }
+@media (max-width: 1099px) { .comunes__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 899px) {
+  .aptos { grid-template-columns: 1fr; }
+  .js .aptos__sel { position: static; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; }
+  .aptos__sel [role="tab"] { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: .9rem .3rem 1rem; border-bottom-width: 3px; border-bottom-color: transparent; }
+  .aptos__sel [role="tab"][aria-selected="true"] { border-bottom-color: var(--marino); }
+  .aptos__sel [role="tab"][aria-selected="true"]::before { display: none; }
+  .aptos__n { text-align: center; }
+  .aptos__nom small { display: none; }
+  .aptos__nom b { font-size: 1rem; }
+}
+@media (max-width: 699px) { .apto { grid-template-columns: 1fr; } .comunes__lista { grid-template-columns: 1fr; } }
+
+/* =====================================================================
+   3. LA PISCINA CLIMATIZADA (fotos de 800 px a su tamaño)
+   ===================================================================== */
+.piscina { background: var(--niebla); }
+.piscina__in { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.piscina__datos { display: grid; gap: 1rem; margin-top: 2rem; }
+.piscina__datos div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; padding-top: .9rem; border-top: 1px solid var(--linea); }
+.piscina__datos dt { font-weight: 600; }
+.piscina__datos dd { color: var(--texto-suave); }
+.piscina__fotos { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 12px; max-width: 1212px; }
+.piscina__g { grid-row: span 2; max-width: 800px; }
+.piscina__g .foto-btn { height: 100%; min-height: 100%; aspect-ratio: 3 / 2; }
+.piscina__p .foto-btn { aspect-ratio: 3 / 2; }
+@media (max-width: 899px) {
+  .piscina__in { grid-template-columns: 1fr; }
+  .piscina__fotos { grid-template-columns: 1fr 1fr; }
+  .piscina__g { grid-column: 1 / -1; grid-row: auto; }
+}
+
+/* =====================================================================
+   4. POR DENTRO, POR ESTANCIAS: índice fijo + filas de alturas iguales
+   ===================================================================== */
+.estancias { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: start; }
+.estancias__indice { position: sticky; top: calc(var(--cabecera) + 2rem); }
+.estancias__indice ol { display: grid; gap: .1rem; }
+.estancias__indice a { position: relative; display: flex; align-items: center; gap: .2rem; padding: .62rem 0; text-decoration: none; color: var(--texto-suave); font: 500 1.05rem/1.25 var(--letra-titular); transition: color .25s var(--ease); }
+.estancias__indice a .haz-corto { --haz-color: var(--marino); opacity: 0; width: 1.5em; transition: opacity .25s var(--ease); }
+.estancias__indice a[aria-current="true"] { color: var(--noche); }
+.estancias__indice a[aria-current="true"] .haz-corto { opacity: 1; }
+.estancias__corto { display: none; }
+.estancias__n { margin-left: auto; font-size: .9rem; color: var(--texto-suave); }
+.estancias__grupos { display: grid; gap: clamp(3.5rem, 7vw, 5rem); }
+.estancia__tit { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); font-weight: 600; margin-bottom: 1.2rem; }
+/* filas justificadas: cada fila (de construir.mjs) suma ≥ 2,4 de proporción → misma altura y ninguna foto pasa de 800 px */
+.fila { display: flex; gap: 10px; }
+.fila + .fila { margin-top: 10px; }
+.foto { flex: var(--r) 1 0; min-width: 0; }
+.foto .foto-btn { aspect-ratio: var(--r); }
+.foto figcaption { margin-top: .35rem; font-size: .85rem; color: var(--texto-suave); }
+@media (max-width: 899px) {
+  .estancias { grid-template-columns: 1fr; }
+  .estancias__indice { top: var(--cabecera); z-index: 5; margin-inline: calc(-1 * var(--gutter)); padding: .3rem var(--gutter); background: color-mix(in oklab, var(--bruma) 94%, transparent); box-shadow: 0 1px 0 var(--linea); overflow-x: auto; scrollbar-width: none; }
+  .estancias__indice ol { display: flex; gap: .2rem; }
+  .estancias__indice a { padding: .7rem .5rem; font-size: .95rem; white-space: nowrap; }
+  .estancias__indice a .haz-corto { width: 1.1em; }
+  .estancias__largo, .estancias__n { display: none; }
+  .estancias__corto { display: inline; }
+}
+@media (max-width: 599px) {
+  .fila { flex-wrap: wrap; }
+  .foto { flex: 1 1 100%; }
+}
+
+/* =====================================================================
+   5. EL LUGAR (hueco del 3D; respaldo de la Web). CAMPO OSCURO.
+   ===================================================================== */
+/* (los selectores del módulo de Lugar 3D van bajo [data-modulo].lugar: aquí solo la sección, por su id) */
+#lugar { background: var(--noche); color: var(--claro); padding-bottom: 0; }
+/* contrato con Lugar 3D: su escenario puede ser sticky (ningún antepasado con overflow, transform ni filter) y se le
+   dice el alto de la cabecera fija. La sección es oscura: las variables comunes que lee el módulo, en su versión para
+   fondo noche (en Amaicha el texto del 3D salió ilegible por no hacerlo). */
+#lugar {
+  --lugar-arriba: var(--cabecera);
+  --fondo: var(--noche); --texto: var(--bruma); --texto-suave: var(--claro-suave);
+  --linea: var(--linea-clara); --marca: color-mix(in oklab, var(--ola) 70%, var(--bruma));
+  --superficie: color-mix(in oklab, var(--bruma) 7%, var(--noche));
+  --foco: var(--luz); --haz-color: var(--luz);
+}
+#lugar > [data-modulo="lugar"][data-modo="plano"] { padding-inline: var(--gutter); }
+#lugar .lugar__cab .sec-txt { color: var(--claro-suave); }
+.lugar__cab { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.lugar__respaldo { width: min(100% - 2 * var(--gutter), var(--ancho)); margin-inline: auto; padding-bottom: clamp(3rem, 6vw, 5rem); }
+.lugar__respaldo img { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; border-radius: var(--radio); }
+.lugar__respaldo figcaption { padding-top: .9rem; font-size: .95rem; color: var(--claro-suave); }
+@media (max-width: 699px) { .lugar__respaldo img { aspect-ratio: 4 / 3.6; } }
+
+/* =====================================================================
+   6. ALREDEDOR: cada sitio en su sitio (lon/lat reales) y las distancias de OSRM
+   ===================================================================== */
+.alrededor__in { display: grid; gap: clamp(2rem, 4vw, 3rem); }
+.al-mapa { padding: clamp(1rem, 2.5vw, 2rem) clamp(.5rem, 2vw, 1.5rem); background: var(--niebla); border-radius: var(--radio); }
+.al-svg { width: 100%; height: auto; overflow: visible; font-family: var(--letra-texto); }
+.al-mar { font: 600 15px/1 var(--letra-titular); letter-spacing: .22em; text-transform: uppercase; fill: color-mix(in oklab, var(--marino) 70%, var(--niebla)); text-anchor: middle; }
+.al-sitio circle { fill: var(--bruma); stroke: var(--marino); stroke-width: 2.5; transition: r .3s var(--ease), fill .3s var(--ease); }
+.al-sitio.es-elegido circle { fill: var(--marino); r: 8; }
+.al-et { font-size: 17px; font-weight: 600; fill: var(--noche); paint-order: stroke; stroke: var(--niebla); stroke-width: 5px; stroke-linejoin: round; }
+.al-et--izq { text-anchor: end; }
+.al-casa circle:first-child { fill: var(--luz); stroke: var(--noche); stroke-width: 2; }
+.al-casa circle:last-child { fill: var(--noche); }
+.al-casa text { font: 700 17px/1 var(--letra-titular); text-anchor: middle; fill: var(--noche); paint-order: stroke; stroke: var(--niebla); stroke-width: 5px; stroke-linejoin: round; }
+.al-haz path { fill: color-mix(in oklab, var(--luz) 80%, transparent); }
+.al-escala path { stroke: var(--texto-suave); stroke-width: 1.5; fill: none; }
+.al-escala text { font-size: 13px; fill: var(--texto-suave); text-anchor: middle; }
+.al-grupos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 3rem); }
+.al-grupo__tit { font-size: 1.3rem; font-weight: 600; padding-bottom: .8rem; border-bottom: 2px solid var(--marino); }
+.al-lista li { border-bottom: 1px solid var(--linea); }
+.al-btn { position: relative; display: grid; grid-template-columns: 1fr auto; gap: .35rem 1rem; width: 100%; padding: .95rem 0 .95rem 2.2rem; border: 0; background: none; text-align: left; cursor: pointer; color: var(--texto); }
+.al-btn .haz-corto { position: absolute; left: 0; top: 1.15rem; width: 1.5rem; --haz-color: var(--marino); opacity: 0; transition: opacity .25s var(--ease); }
+.al-btn[aria-pressed="true"] .haz-corto { opacity: 1; }
+.al-btn:hover .al-nombre { text-decoration: underline; text-underline-offset: .2em; }
+.al-nombre { grid-column: 1 / -1; font: 600 1.08rem/1.3 var(--letra-titular); }
+.al-dato { display: flex; align-items: center; gap: .45rem; font-size: 1rem; }
+.al-dato .ico { width: 20px; height: 20px; color: var(--marino); }
+.al-km { color: var(--texto-suave); margin-left: .2rem; }
+.al-recta { grid-column: 1 / -1; font-size: .88rem; color: var(--texto-suave); }
+.alrededor__fino { margin-top: clamp(1.6rem, 3vw, 2.4rem); font-size: .92rem; color: var(--texto-suave); max-width: 52rem; }
+@media (max-width: 999px) { .al-grupos { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 699px) {
+  .al-grupos { grid-template-columns: 1fr; }
+  .al-et { display: none; }
+  .al-sitio.es-elegido .al-et { display: block; font-size: 30px; stroke-width: 8px; }
+  .al-casa text { font-size: 28px; }
+}
+
+/* =====================================================================
+   7. RESEÑAS
+   ===================================================================== */
+.resenas { background: var(--niebla); }
+.resenas__in { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 5rem); align-items: center; }
+.resenas__nota { display: grid; justify-items: start; gap: .6rem; }
+.resenas__nota .cifra { font-size: clamp(5.5rem, 3rem + 9vw, 11rem); line-height: .85; font-weight: 500; letter-spacing: -.04em; color: var(--noche); }
+.resenas__estrellas { display: flex; gap: .25rem; color: var(--marino); }
+.resenas__estrellas .ico { width: 22px; height: 22px; }
+.resenas__dato { margin-top: .9rem; color: var(--texto-suave); font-size: 1.1rem; }
+.resenas__txt .btn { margin-top: 1.6rem; }
+@media (max-width: 699px) { .resenas__in { grid-template-columns: 1fr; } }
+
+/* =====================================================================
+   8. RESERVAR: el buscador propio, las condiciones y su motor real
+   ===================================================================== */
+.reservar__rejilla { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); grid-template-areas: 'real real' 'busca cond' 'motor motor'; gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
+.reservar__motor { display: contents; }
+.real { grid-area: real; display: flex; gap: 1rem; align-items: center; padding: 1rem 1.3rem; background: var(--noche); color: var(--claro); border-radius: var(--radio); max-width: 56rem; }
+.real__haz, .motor__haz { flex: none; width: 46px; height: 26px; background: linear-gradient(90deg, var(--luz) 0 12%, color-mix(in oklab, var(--luz) 20%, transparent)); clip-path: polygon(0 42%, 100% 0, 100% 100%, 0 58%); }
+.busca { grid-area: busca; }
+.busca__eti { display: block; font: 600 .78rem/1.2 var(--letra-texto); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-suave); }
+.busca__fechas { display: flex; flex-wrap: wrap; gap: .6rem 2.4rem; align-items: end; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 2px solid var(--marino); }
+.busca__fechas b { display: block; margin-top: .3rem; font: 600 clamp(1.25rem, 1rem + .8vw, 1.7rem)/1.1 var(--letra-titular); }
+.busca__noches { margin-left: auto; color: var(--texto-suave); font-size: 1.1rem; }
+.busca__resumen { margin-top: .9rem; color: var(--texto-suave); font-size: .95rem; min-height: 1.6em; }
+.busca__pista { margin-top: .3rem; font-size: .95rem; color: var(--texto-suave); min-height: 1.4em; }
+.busca__acc { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.6rem; margin-top: 1.2rem; }
+.condiciones { grid-area: cond; padding: 1.5rem 1.4rem; background: var(--niebla); border-radius: var(--radio); }
+.condiciones__tit { font-size: 1.35rem; font-weight: 600; }
+.condiciones__lista { display: grid; gap: .85rem; margin-top: 1rem; }
+.condiciones__lista div { display: grid; gap: .15rem; padding-top: .8rem; border-top: 1px solid var(--linea); }
+.condiciones__lista dt { font-weight: 700; }
+.condiciones__lista dd { color: var(--texto-suave); font-size: .97rem; }
+.condiciones__alt { margin-top: 1.4rem; padding-top: 1.1rem; border-top: 2px solid var(--marino); }
+.condiciones__lineas { display: grid; gap: .1rem; margin-top: .5rem; }
+.condiciones__lineas a { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 0; overflow-wrap: anywhere; }
+.condiciones__lineas .ico { width: 20px; height: 20px; color: var(--marino); }
+/* calendario */
+.cal__nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem; }
+.cal__flecha { width: 44px; height: 44px; border: 1px solid var(--linea); border-radius: 50%; background: var(--bruma); display: grid; place-items: center; cursor: pointer; }
+.cal__flecha:disabled { opacity: .35; cursor: not-allowed; }
+.cal__meses { display: grid; grid-template-columns: repeat(var(--meses, 2), minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2.5rem); }
+.cal__tit { font: 600 1.05rem/1.2 var(--letra-titular); text-transform: capitalize; margin-bottom: .5rem; }
+.cal__sem, .cal__dias { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.cal__sem span { text-align: center; font-size: .78rem; font-weight: 600; color: var(--texto-suave); padding: .3rem 0; }
+.cal__dias button { aspect-ratio: 1; min-height: 40px; border: 0; border-radius: 50%; background: none; font: 500 1.02rem/1 var(--letra-cifras); cursor: pointer; position: relative; color: var(--noche); }
+.cal__dias button:hover:not(:disabled) { background: var(--niebla); }
+.cal__dias button:disabled { color: color-mix(in oklab, var(--noche) 64%, var(--bruma)); cursor: default; text-decoration: line-through; text-decoration-thickness: 1px; }
+.cal__dias button.es-entre { background: color-mix(in oklab, var(--ola) 40%, var(--bruma)); border-radius: 0; }
+.cal__dias button.es-ini, .cal__dias button.es-fin { background: var(--noche); color: var(--claro); }
+.cal__dias button.es-hoy::after { content: ''; position: absolute; left: 50%; bottom: 5px; width: 4px; height: 4px; border-radius: 50%; background: var(--marino); transform: translateX(-50%); }
+/* el motor */
+.motor { grid-area: motor; }
+.motor__vacio { display: flex; align-items: center; gap: 1.2rem; padding: 1.6rem 1.4rem; border: 1px dashed color-mix(in oklab, var(--noche) 40%, var(--bruma)); border-radius: var(--radio); color: var(--texto-suave); }
+.motor__estado { margin-top: .8rem; font-weight: 600; min-height: 1.6em; }
+.motor__estado:empty { display: none; }
+.motor__iframe { display: block; width: 100%; height: clamp(700px, 92svh, 1040px); border: 0; border-radius: var(--radio); background: #fff; box-shadow: 0 0 0 1px var(--linea); }
+.motor.esta-cargando .motor__iframe { opacity: .55; }
+.motor__fuera { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1.2rem; margin-top: .9rem; font-size: .97rem; }
+.motor__fuera a { display: inline-flex; align-items: center; gap: .5rem; padding: .45rem 0; font-weight: 600; }
+.motor__fuera .ico { width: 20px; height: 20px; }
+.motor__nota { color: var(--texto-suave); font-size: .9rem; }
+@media (max-width: 999px) { .reservar__rejilla { grid-template-columns: 1fr; grid-template-areas: 'real' 'busca' 'motor' 'cond'; } }
+@media (max-width: 599px) { .motor__iframe { height: clamp(640px, 88svh, 900px); } .busca__noches { margin-left: 0; width: 100%; } .real { align-items: flex-start; } }
+
+/* =====================================================================
+   9. CONTACTO Y MAPA
+   ===================================================================== */
+.contacto__in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.contacto__dir { margin-top: 1.4rem; font: 500 clamp(1.3rem, 1.1rem + .6vw, 1.7rem)/1.35 var(--letra-titular); }
+.contacto__lineas { display: grid; gap: .3rem; margin-top: 1.4rem; font-size: 1.05rem; }
+.contacto__lineas li { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; }
+.contacto__lineas .ico { width: 22px; height: 22px; color: var(--marino); }
+.contacto__lineas a { padding: .45rem 0; overflow-wrap: anywhere; }
+.contacto__ruta { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--linea); color: var(--texto-suave); }
+.mapa { position: relative; aspect-ratio: 4 / 3; background: var(--niebla); border-radius: var(--radio); overflow: hidden; }
+.mapa iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.map-consent { position: absolute; inset: 0; width: 100%; display: grid; place-content: center; justify-items: center; gap: .6rem; padding: 1.5rem; border: 0; background: var(--niebla); cursor: pointer; text-align: center; color: var(--noche); }
+.map-consent .ico { width: 44px; height: 44px; color: var(--marino); }
+.map-consent b { font: 600 1.2rem/1.2 var(--letra-titular); }
+.map-consent span:last-child { max-width: 22rem; font-size: .92rem; color: var(--texto-suave); }
+@media (max-width: 799px) { .contacto__in { grid-template-columns: 1fr; } }
+
+/* =====================================================================
+   PIE (noche): el logo con su faro, que se ENCIENDE al llegar (lo que la portada abrió, el pie lo cierra)
+   ===================================================================== */
+.pie { background: var(--noche); color: var(--claro); --foco: var(--luz); padding: clamp(3.5rem, 7vw, 6rem) 0 2rem; }
+.pie__arriba { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.pie__logo { display: grid; justify-items: start; gap: .7rem; width: min(100%, 270px); text-decoration: none; }
+.pie__faro { position: relative; display: block; width: 100%; }
+.pie__simbolo { position: relative; z-index: 1; width: 100%; height: auto; --s-mar: color-mix(in oklab, var(--bruma) 88%, var(--ola)); }
+.pie__simbolo .s-luz { fill: color-mix(in oklab, var(--luz) 30%, var(--noche)); transition: fill .9s var(--ease) .2s; }
+.pie__haz { position: absolute; z-index: 0; left: 78.5%; top: 14%; width: 260%; height: 60%; transform-origin: 0 50%; pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--luz) 75%, transparent), transparent 80%); clip-path: polygon(0 48%, 100% 0, 100% 100%, 0 52%);
+  transform: translateY(-50%) rotate(180deg) scaleX(.2); opacity: 0; transition: transform 1.6s var(--ease) .5s, opacity 1.2s var(--ease) .4s; }
+.pie__faro.es-encendido .s-luz { fill: var(--luz); }
+.pie__faro.es-encendido .pie__haz { transform: translateY(-50%) rotate(196deg) scaleX(1); opacity: .55; }
+.pie__palabra { width: 100%; aspect-ratio: 6.6; background: var(--claro); -webkit-mask: url(../marca/palabra.svg) left center / contain no-repeat; mask: url(../marca/palabra.svg) left center / contain no-repeat; }
+.pie__sub { font: 600 .74rem/1 var(--letra-texto); letter-spacing: .2em; text-transform: uppercase; color: var(--claro-suave); }
+.pie__cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; }
+.pie__h { font: 600 1rem/1.2 var(--letra-titular); color: var(--luz); margin-bottom: .8rem; }
+.pie__cols p { color: var(--claro-suave); line-height: 1.9; }
+.pie__cols p + p { margin-top: .6rem; }
+.pie__cols a { color: var(--claro); overflow-wrap: anywhere; }
+.pie__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: 1.4rem; border-top: 1px solid var(--linea-clara); font-size: .92rem; color: var(--claro-suave); }
+.pie__legal nav { display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; }
+.pie__legal a, .pie__legal button { color: var(--claro); background: none; border: 0; padding: .5rem 0; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; font-size: inherit; }
+@media (max-width: 799px) { .pie__arriba { grid-template-columns: 1fr; } .pie__cols { grid-template-columns: 1fr 1fr; } .pie__logo { width: min(70%, 240px); } }
+
+/* =====================================================================
+   COOKIES, MANDO Y VISOR
+   ===================================================================== */
+.cookies { position: fixed; left: var(--gutter); right: var(--gutter); bottom: 16px; z-index: 110; max-width: 34rem; padding: 1.2rem 1.3rem; background: var(--bruma); color: var(--noche); border-radius: var(--radio); box-shadow: 0 0 0 1px var(--linea), 0 18px 50px color-mix(in oklab, var(--noche) 30%, transparent); }
+.cookies:not([hidden]) { display: flex; flex-direction: column; gap: 1rem; }
+.cookies p { font-size: .95rem; }
+.cookies__acc { display: flex; flex-wrap: wrap; gap: .6rem; }
+.mando { position: fixed; left: 16px; bottom: 16px; z-index: 100; padding: .35rem; border-radius: var(--radio-boton); background: var(--noche); color: var(--claro); --foco: var(--luz); box-shadow: 0 10px 30px color-mix(in oklab, var(--noche) 40%, transparent); }
+.mando:not([hidden]) { display: flex; align-items: center; gap: .3rem; }
+.mando__eti { font-size: .82rem; padding: 0 .5rem; color: var(--claro-suave); }
+.mando button { min-height: 40px; padding: .4rem .9rem; border: 0; border-radius: var(--radio-boton); background: transparent; color: var(--claro); font-weight: 600; cursor: pointer; }
+.mando button[aria-pressed="true"] { background: var(--luz); color: var(--noche); }
+.visor { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: color-mix(in oklab, var(--noche) 96%, transparent); color: var(--claro); --foco: var(--luz); }
+.visor::backdrop { background: transparent; }
+.visor[open] { display: grid; place-items: center; }
+.visor__fig { display: grid; justify-items: center; gap: .8rem; max-width: min(94vw, 1500px); padding: 3.5rem 4.5rem 1.2rem; }
+/* nunca más grande que la foto: width auto sobre su tamaño real (las de 800 px, a 800 como mucho) */
+.visor__fig img { max-height: calc(100svh - 9rem); width: auto; height: auto; max-width: 100%; object-fit: contain; border-radius: 6px; }
+.visor__fig figcaption { font-size: .95rem; color: var(--claro-suave); text-align: center; pointer-events: none; }
+.visor__n { margin-left: .6rem; }
+.visor__btn, .visor__cerrar { position: fixed; width: 52px; height: 52px; display: grid; place-items: center; border: 1px solid var(--linea-clara); border-radius: 50%; background: color-mix(in oklab, var(--noche) 70%, transparent); color: var(--claro); cursor: pointer; z-index: 2; }
+.visor__btn { top: 50%; transform: translateY(-50%); }
+.visor__btn--ant { left: 12px; }
+.visor__btn--sig { right: 12px; }
+.visor__cerrar { top: 12px; right: 12px; }
+@media (max-width: 699px) { .visor__fig { padding: 4rem .6rem 5.5rem; } .visor__btn { top: auto; bottom: 14px; transform: none; } }
+
+/* =====================================================================
+   VERSIÓN SOBRIA (mando con ?revision): la portada quieta, sin selector (las tres fichas seguidas), sin haces cortos
+   (lo activo en negrita) y AÑADE la tabla «De un vistazo». El faro del pie, ya encendido.
+   ===================================================================== */
+.densidad-sobria .aptos__sel { display: none !important; }
+.densidad-sobria .aptos { grid-template-columns: 1fr; }
+.densidad-sobria .apto[hidden] { display: grid !important; }
+.densidad-sobria .haz-corto, .densidad-sobria .cab__nav a[aria-current]::before { display: none; }
+.densidad-sobria .cab__nav a[aria-current], .densidad-sobria .estancias__indice a[aria-current="true"] { font-weight: 700; text-decoration: underline; text-underline-offset: .35em; }
+.densidad-sobria .portada__cono { opacity: calc(.12 + .3 * var(--n)); }
+.densidad-sobria .vistazo { display: block; margin-top: clamp(3rem, 6vw, 4.5rem); }
+.vistazo__tit { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); font-weight: 600; margin-bottom: 1.2rem; }
+.vistazo__caja { overflow-x: auto; }
+.vistazo__tabla { width: 100%; min-width: 620px; border-collapse: collapse; font-size: .98rem; }
+.vistazo__tabla th, .vistazo__tabla td { padding: .8rem .9rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--linea); }
+.vistazo__tabla thead th { font: 600 1.05rem/1.2 var(--letra-titular); border-bottom: 2px solid var(--marino); }
+.vistazo__tabla tbody th { font-weight: 600; width: 9rem; }

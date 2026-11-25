@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Prueba del módulo lugar</title>
+<!-- Página de prueba del agente Lugar 3D: variables comunes de relleno (las de verdad las pone Web en css/base.css;
+     #lugar es campo oscuro). Ábrela en tu Chrome con un servidor local: /scripts/lugar-prueba.html?fps -->
+<style>
+  :root { --fondo: #f5f2ea; --superficie: #ebe6da; --texto: #14233a; --texto-suave: #4d5a6b; --marca: #1d3557; --acento: #f2b632; --ola: #6cb4d8; --linea: #d4cdbd;
+          --letra-titular: Georgia, serif; --letra-texto: system-ui, sans-serif; --letra-cifras: ui-monospace, monospace; }
+  #lugar { --fondo: #0d1626; --superficie: #111d31; --texto: #eef1f4; --texto-suave: #a9b4c2; --linea: #2a3850; background: var(--fondo); color: var(--texto); padding: 48px 0; }
+  body { margin: 0; background: var(--fondo); color: var(--texto); font-family: var(--letra-texto); }
+  .relleno { height: 60vh; display: grid; place-items: center; color: var(--texto-suave); }
+  #lugar > h2, #lugar > p { max-width: 70ch; margin: 0 auto; padding: 0 16px; }
+  #lugar > p { margin-bottom: 24px; }
+  [data-modulo="lugar"] { padding: 0 clamp(16px, 4vw, 56px); }
+  [data-modulo="lugar"][data-modo="3d"] { padding: 0; }
+</style>
+<link rel="stylesheet" href="../css/lugar.css">
+<script src="../js/lugar.js" defer></script>
+</head>
+<body>
+  <div class="relleno">(arriba)</div>
+  <section id="lugar">
+    <h2>Del faro a la casa</h2>
+    <p>Texto de entrada de la sección (lo escribe Web).</p>
+    <div data-modulo="lugar"><figure class="respaldo"><img src="../ref/fotos-originales/farocabovidio.jpg" alt="Cabo Vidio y su faro sobre el acantilado" width="1920" height="1280" style="max-width:100%;height:auto"><figcaption>Respaldo de Web.</figcaption></figure></div>
+  </section>
+  <div class="relleno">(abajo)</div>
+  <script>
+    addEventListener('DOMContentLoaded', function () {
+      var el = document.querySelector('[data-modulo="lugar"]');
+      var movimiento = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.__lugar = window.LasRiberas.lugar.montar(el, { movimiento: movimiento, densidad: 'cargada' });
+    });
+  </script>
+</body>
+</html>

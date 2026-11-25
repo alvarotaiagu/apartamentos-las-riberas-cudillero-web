@@ -1,0 +1,512 @@
+[
+ {
+  "nombre": "fachada-recorte",
+  "anchos": [
+   480,
+   800,
+   1200,
+   1600,
+   1920
+  ],
+  "ancho": 1920,
+  "alto": 989,
+  "origen": "fotos-originales/apartamentos_lasriberas_inicio.jpg",
+  "alfa": true
+ },
+ {
+  "nombre": "fachada",
+  "anchos": [
+   480,
+   800,
+   1200,
+   1600,
+   1920
+  ],
+  "ancho": 1920,
+  "alto": 989,
+  "origen": "fotos-originales/apartamentos_lasriberas_inicio.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "faro-vidio",
+  "anchos": [
+   480,
+   800,
+   1200,
+   1600,
+   1920
+  ],
+  "ancho": 1920,
+  "alto": 1280,
+  "origen": "fotos-originales/farocabovidio.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-salon",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 536,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-14.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-salon-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-21.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-comedor",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-9.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-mesa",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-4.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-sofa",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-10.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-cocina",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-2.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-cocina-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-20.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-cocina-3",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-6.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-dormitorio",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-13.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-dormitorio-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-3.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-bano",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-11.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "mirador-bano-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoMirador_LasRiberas-12.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "familiar-salon",
+  "anchos": [
+   480,
+   800,
+   1200,
+   1600,
+   1920
+  ],
+  "ancho": 1920,
+  "alto": 1280,
+  "origen": "fotos-originales/lasriberas_familiar-6.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "familiar-cocina",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos-originales/ApartamentoFamiliar_LasRiberas-2.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "familiar-cocina-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Familiar.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "familiar-cocina-3",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoFamiliar_LasRiberas-1.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "familiar-dormitorio",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoFamiliar_LasRiberas-5.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "familiar-bano",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoFamiliar_LasRiberas-3.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "familiar-bano-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoFamiliar_LasRiberas-4.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-dosel",
+  "anchos": [
+   480,
+   800,
+   1200,
+   1600,
+   1920
+  ],
+  "ancho": 1920,
+  "alto": 1280,
+  "origen": "fotos-originales/lasriberas_deluxe-5.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-salon",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Deluxe1.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-salon-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Deluxe2.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-cocina",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Deluxe3.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-dormitorio",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Deluxe4.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-jacuzzi",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Deluxe5.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-jacuzzi-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 534,
+  "origen": "fotos-originales/ApartamentoDeluxe_LasRiberas-1.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-mesa",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoDeluxe_LasRiberas-2.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "deluxe-bano",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 1200,
+  "origen": "fotos-originales/ApartamentoDeluxe_LasRiberas-3.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina13.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-ventanal",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina12.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-tumbonas",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina4.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-prado",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina14.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-vaso",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina1.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-2",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina2.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-3",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina3.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-5",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina5.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-6",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina6.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "piscina-15",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina15.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "pabellon",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina7.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "pabellon-terraza",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina8.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "pabellon-flores",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina9.jpg",
+  "alfa": false
+ },
+ {
+  "nombre": "terraza-tumbonas",
+  "anchos": [
+   480,
+   800
+  ],
+  "ancho": 800,
+  "alto": 533,
+  "origen": "fotos-originales/ApartamentosLasRiberas-Piscina10.jpg",
+  "alfa": false
+ }
+]

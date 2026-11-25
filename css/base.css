@@ -1,0 +1,111 @@
+/* =====================================================================
+   Apartamentos Las Riberas · «La luz de Vidio» · base: tokens, letras, reinicio y piezas comunes.
+   VARIABLES COMUNES DEL CONTRATO (las define la Web; Lugar 3D solo las LEE):
+     --fondo, --superficie, --texto, --texto-suave, --marca, --acento, --ola, --linea,
+     --letra-titular, --letra-texto, --letra-cifras.
+   Paleta (seis colores, ninguno más; el resto son mezclas). Los tres del logo, medidos en sus píxeles:
+     marino  #2D475E  el faro y las letras del logo
+     luz     #FDCF60  la linterna del faro: el acento (botón de reservar, el haz, lo activo en oscuro)
+     ola     #84CDE4  las olas del logo: solo dibujo (filetes, el mar del mapa), nunca texto
+   Y tres de campo:
+     bruma   #EEF3F6  fondo frío (no crema)
+     niebla  #DCE6EC  superficie: paneles, condiciones, el buscador
+     noche   #0E1C2A  el texto y los campos oscuros (la portada de noche, el lugar, el pie)
+   ===================================================================== */
+:root {
+  --bruma: #EEF3F6;
+  --niebla: #DCE6EC;
+  --marino: #2D475E;
+  --noche: #0E1C2A;
+  --luz: #FDCF60;
+  --ola: #84CDE4;
+
+  /* contrato */
+  --fondo: var(--bruma);
+  --superficie: var(--niebla);
+  --texto: var(--noche);
+  --texto-suave: color-mix(in oklab, var(--noche) 76%, var(--bruma));
+  --marca: var(--marino);
+  --acento: var(--luz);
+  --linea: color-mix(in oklab, var(--noche) 18%, var(--bruma));
+  --letra-titular: 'Parkinsans', 'Trebuchet MS', system-ui, sans-serif;
+  --letra-texto: 'Radio Canada Big', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --letra-cifras: 'Inconsolata', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* derivados para los campos oscuros (texto que tiene que llegar a AA) */
+  --claro: var(--bruma);
+  --claro-suave: color-mix(in oklab, var(--bruma) 76%, var(--noche));
+  --linea-clara: color-mix(in oklab, var(--bruma) 20%, var(--noche));
+  --foco: var(--marino);
+
+  --cabecera: 72px;
+  --gutter: clamp(16px, 4vw, 56px);
+  --ancho: 1240px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --radio: 14px;          /* un solo radio: el de la cornisa y el balcón del faro, redondeados */
+  --radio-boton: 999px;   /* los botones, píldora (como el remate del faro) */
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; scroll-padding-top: calc(var(--cabecera) + 12px); }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 400 1.0625rem/1.6 var(--letra-texto); text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-underline-offset: .22em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+button { font: inherit; color: inherit; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--letra-titular); font-weight: 500; line-height: 1.04; letter-spacing: -.02em; text-wrap: balance; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+dl, dd { margin: 0; }
+figure { margin: 0; }
+address { font-style: normal; }
+[hidden] { display: none !important; }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.cifra { font-family: var(--letra-cifras); font-variant-numeric: tabular-nums; font-stretch: 92%; letter-spacing: -.01em; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ico { width: 24px; height: 24px; flex: none; }
+
+/* foco del teclado: contorno de 2 px y, por fuera, un haz corto que nace del borde izquierdo (#foco-haz, main.js) */
+:focus-visible { outline: 2px solid var(--foco); outline-offset: 4px; border-radius: 4px; }
+:focus:not(:focus-visible) { outline: none; }
+.foco-haz { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 120; overflow: visible; opacity: 0; color: var(--foco); }
+.foco-haz.es-fijo { position: fixed; }
+.foco-haz.es-visible { opacity: 1; }
+.foco-haz__cono { fill: currentColor; opacity: .55; }
+.foco-haz__marco { fill: none; stroke: currentColor; stroke-width: 2; }
+
+.saltar { position: fixed; left: 12px; top: -80px; z-index: 200; background: var(--noche); color: var(--claro); padding: .7rem 1rem; border-radius: var(--radio); text-decoration: none; }
+.saltar:focus { top: 12px; }
+
+.env { width: min(100% - 2 * var(--gutter), var(--ancho)); margin-inline: auto; }
+
+/* ---------- el haz corto: lo que está activo (enlace de la cabecera, estancia, apartamento elegido, sitio del mapa).
+   Una cuña de luz que se abre hacia la palabra, no un subrayado. ---------- */
+.haz-corto { display: inline-block; flex: none; width: 1.6em; height: .9em; margin-right: .45em; vertical-align: -.08em;
+  background: linear-gradient(90deg, var(--haz-color, var(--luz)) 0 10%, color-mix(in oklab, var(--haz-color, var(--luz)) 30%, transparent) 100%);
+  clip-path: polygon(0 42%, 100% 0, 100% 100%, 0 58%); }
+
+/* ---------- botones (píldora, como el remate del faro; una etiqueta por intención: «Ver fechas») ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 48px; padding: .72rem 1.45rem; border: 2px solid transparent; border-radius: var(--radio-boton);
+  font: 600 .98rem/1.1 var(--letra-titular); letter-spacing: .005em; text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), transform .15s var(--ease), box-shadow .3s var(--ease); }
+.btn:active { transform: translateY(1px) scale(.985); }
+.btn--luz { background: var(--luz); color: var(--noche); --foco: var(--claro); }
+.btn--luz:hover { background: color-mix(in oklab, var(--luz) 88%, var(--bruma)); box-shadow: 0 0 0 6px color-mix(in oklab, var(--luz) 22%, transparent); }
+.btn--oscuro { background: var(--noche); color: var(--claro); }
+.btn--oscuro:hover { background: color-mix(in oklab, var(--noche) 80%, var(--marino)); }
+.btn--linea { border-color: var(--noche); color: var(--noche); background: transparent; }
+.btn--linea:hover { background: var(--noche); color: var(--claro); }
+.btn--linea-clara { border-color: color-mix(in oklab, var(--bruma) 70%, transparent); color: var(--claro); background: color-mix(in oklab, var(--noche) 25%, transparent); }
+.btn--linea-clara:hover { background: var(--claro); color: var(--noche); }
+.enlace { background: none; border: 0; padding: .45rem 0; text-decoration: underline; text-underline-offset: .22em; cursor: pointer; color: inherit; font: inherit; }
+
+/* ---------- titulares que aparecen (solo con movimiento: «con-movimiento» lo pone main.js) ---------- */
+.con-movimiento [data-aparece] { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.con-movimiento [data-aparece].es-visto { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
